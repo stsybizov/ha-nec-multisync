@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/logo.svg" alt="NEC MultiSync for Home Assistant" width="480">
+</p>
+
 # NEC MultiSync — Home Assistant integration
 
 [![Validate](https://github.com/stsybizov/ha-nec-multisync/actions/workflows/validate.yaml/badge.svg)](https://github.com/stsybizov/ha-nec-multisync/actions/workflows/validate.yaml)
