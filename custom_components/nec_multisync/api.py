@@ -38,9 +38,7 @@ class NecParam:
 class NecMultisyncApi:
     """Blocking client for one NEC large-format display over LAN."""
 
-    def __init__(
-        self, host: str, monitor_id: int, port: int = DEFAULT_PORT
-    ) -> None:
+    def __init__(self, host: str, monitor_id: int, port: int = DEFAULT_PORT) -> None:
         self._host = host
         self._port = port
         self._monitor_id = monitor_id

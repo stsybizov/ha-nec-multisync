@@ -5,8 +5,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import voluptuous as vol
-
 from homeassistant.config_entries import (
     ConfigEntry,
     ConfigFlow,
@@ -16,6 +14,7 @@ from homeassistant.config_entries import (
 from homeassistant.const import CONF_HOST, CONF_NAME, CONF_PORT
 from homeassistant.core import callback
 import homeassistant.helpers.config_validation as cv
+import voluptuous as vol
 
 from .api import NecApiError, NecMultisyncApi
 from .const import (

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
 from typing import Any
 
 from homeassistant.components.sensor import (
@@ -36,9 +35,7 @@ async def async_setup_entry(
         entities.append(NecFanSensor(coordinator, index))
 
     if data.get("total_operating_hours") is not None:
-        entities.append(
-            NecHoursSensor(coordinator, "total_operating_hours")
-        )
+        entities.append(NecHoursSensor(coordinator, "total_operating_hours"))
     if data.get("power_on_hours") is not None:
         entities.append(NecHoursSensor(coordinator, "power_on_hours"))
     if data.get("diagnosis"):

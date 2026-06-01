@@ -15,7 +15,6 @@ from .const import (
     DEFAULT_MONITOR_ID,
     DEFAULT_PORT,
     DEFAULT_SCAN_INTERVAL,
-    DOMAIN,
 )
 from .coordinator import NecMultisyncCoordinator
 

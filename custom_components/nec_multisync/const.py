@@ -8,7 +8,7 @@ depend on the SDK's constant names.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 DOMAIN = "nec_multisync"
 
