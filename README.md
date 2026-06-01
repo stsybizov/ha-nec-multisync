@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/logo.svg" alt="NEC MultiSync for Home Assistant" width="480">
+  <img src="custom_components/nec_multisync/brand/logo@2x.png" alt="NEC MultiSync for Home Assistant" width="480">
 </p>
 
 # NEC MultiSync — Home Assistant integration
