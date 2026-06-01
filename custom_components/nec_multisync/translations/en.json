@@ -1,0 +1,68 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "NEC MultiSync",
+        "description": "Connect to a NEC large-format display over LAN (TCP port 7142).",
+        "data": {
+          "host": "Host / IP address",
+          "name": "Name",
+          "monitor_id": "Monitor ID",
+          "port": "Port"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect. Check the IP address and that LAN control is enabled on the display.",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This display is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "NEC MultiSync options",
+        "data": {
+          "scan_interval": "Polling interval (seconds)",
+          "sources": "Inputs to expose as sources"
+        }
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "picture_mode": { "name": "Picture mode" },
+      "aspect": { "name": "Aspect ratio" },
+      "gamma": { "name": "Gamma" },
+      "audio_input": { "name": "Audio input" },
+      "option_slot_power": { "name": "Option slot power" }
+    },
+    "number": {
+      "backlight": { "name": "Backlight" },
+      "contrast": { "name": "Contrast" },
+      "sharpness": { "name": "Sharpness" },
+      "color_temp": { "name": "Color temperature" }
+    },
+    "switch": {
+      "key_lock": { "name": "Key lock" },
+      "auto_brightness": { "name": "Auto brightness" },
+      "power_save": { "name": "Power save" }
+    },
+    "sensor": {
+      "temperature": { "name": "Temperature sensor {number}" },
+      "fan": { "name": "Fan {number}" },
+      "total_operating_hours": { "name": "Total operating time" },
+      "power_on_hours": { "name": "Power-on time" },
+      "diagnosis": { "name": "Self diagnosis" },
+      "carbon_footprint": { "name": "Carbon footprint" },
+      "carbon_savings": { "name": "Carbon savings" },
+      "power_mode": { "name": "Power mode" },
+      "ambient_light": { "name": "Ambient light level" }
+    },
+    "binary_sensor": {
+      "fan_problem": { "name": "Fan problem" }
+    }
+  }
+}

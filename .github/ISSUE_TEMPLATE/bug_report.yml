@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a problem with the NEC MultiSync integration
+labels: ["bug"]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Display model
+      placeholder: "e.g. MultiSync V864Q"
+    validations:
+      required: true
+  - type: input
+    id: ha_version
+    attributes:
+      label: Home Assistant version
+      placeholder: "e.g. 2026.5.4"
+    validations:
+      required: true
+  - type: input
+    id: integration_version
+    attributes:
+      label: Integration version
+      placeholder: "e.g. 0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem and the steps to reproduce it.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: >
+        Settings → System → Logs, or enable debug logging (see README) and paste
+        the nec_multisync entries here.
+      render: shell

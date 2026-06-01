@@ -1,0 +1,68 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "NEC MultiSync",
+        "description": "Подключение к большеформатной панели NEC по сети (TCP-порт 7142).",
+        "data": {
+          "host": "Хост / IP-адрес",
+          "name": "Название",
+          "monitor_id": "Monitor ID",
+          "port": "Порт"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Не удалось подключиться. Проверьте IP-адрес и что на панели включено управление по LAN.",
+      "unknown": "Непредвиденная ошибка"
+    },
+    "abort": {
+      "already_configured": "Эта панель уже настроена"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Параметры NEC MultiSync",
+        "data": {
+          "scan_interval": "Интервал опроса (секунды)",
+          "sources": "Какие входы показывать как источники"
+        }
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "picture_mode": { "name": "Режим изображения" },
+      "aspect": { "name": "Соотношение сторон" },
+      "gamma": { "name": "Гамма" },
+      "audio_input": { "name": "Аудиовход" },
+      "option_slot_power": { "name": "Питание слота OPS" }
+    },
+    "number": {
+      "backlight": { "name": "Подсветка" },
+      "contrast": { "name": "Контрастность" },
+      "sharpness": { "name": "Резкость" },
+      "color_temp": { "name": "Цветовая температура" }
+    },
+    "switch": {
+      "key_lock": { "name": "Блокировка кнопок" },
+      "auto_brightness": { "name": "Автояркость" },
+      "power_save": { "name": "Энергосбережение" }
+    },
+    "sensor": {
+      "temperature": { "name": "Датчик температуры {number}" },
+      "fan": { "name": "Вентилятор {number}" },
+      "total_operating_hours": { "name": "Общая наработка" },
+      "power_on_hours": { "name": "Время во включённом состоянии" },
+      "diagnosis": { "name": "Самодиагностика" },
+      "carbon_footprint": { "name": "Углеродный след" },
+      "carbon_savings": { "name": "Экономия CO₂" },
+      "power_mode": { "name": "Режим питания" },
+      "ambient_light": { "name": "Уровень освещённости" }
+    },
+    "binary_sensor": {
+      "fan_problem": { "name": "Проблема вентилятора" }
+    }
+  }
+}

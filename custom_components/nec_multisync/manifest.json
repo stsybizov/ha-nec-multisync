@@ -1,0 +1,12 @@
+{
+  "domain": "nec_multisync",
+  "name": "NEC MultiSync",
+  "codeowners": ["@stsybizov"],
+  "config_flow": true,
+  "documentation": "https://github.com/stsybizov/ha-nec-multisync",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/stsybizov/ha-nec-multisync/issues",
+  "requirements": ["nec-pd-sdk==23.8.22", "pyserial>=3.5"],
+  "version": "0.1.0"
+}
