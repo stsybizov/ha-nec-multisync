@@ -53,6 +53,14 @@ async def async_setup_entry(
         if desc.opcode in coordinator.api.supported:
             entities.append(NecEnumSensor(coordinator, key, desc.opcode, desc.options))
 
+    if coordinator.api.ip_address:
+        entities.append(NecIpAddressSensor(coordinator))
+    if data.get("display_time") is not None:
+        entities.append(NecDisplayTimeSensor(coordinator))
+    if data.get("signal"):
+        entities.append(NecSignalSensor(coordinator, "h_khz"))
+        entities.append(NecSignalSensor(coordinator, "v_hz"))
+
     async_add_entities(entities)
 
 
@@ -178,3 +186,53 @@ class NecEnumSensor(_NecSensorBase):
         if param is None:
             return None
         return self._options.get(param.current, str(param.current))
+
+
+class NecIpAddressSensor(_NecSensorBase):
+    """The display's LAN IP address (read once at setup)."""
+
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_icon = "mdi:ip-network"
+
+    def __init__(self, coordinator: NecMultisyncCoordinator) -> None:
+        super().__init__(coordinator, "ip_address")
+
+    @property
+    def native_value(self) -> str | None:
+        return self.coordinator.api.ip_address
+
+
+class NecDisplayTimeSensor(_NecSensorBase):
+    """The panel's real-time clock (HH:MM) - useful to verify schedule sync."""
+
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_icon = "mdi:clock-outline"
+
+    def __init__(self, coordinator: NecMultisyncCoordinator) -> None:
+        super().__init__(coordinator, "display_time")
+
+    @property
+    def native_value(self) -> str | None:
+        return self._data.get("display_time")
+
+
+class NecSignalSensor(_NecSensorBase):
+    """Current input timing: horizontal (kHz) or vertical (Hz) frequency."""
+
+    _attr_state_class = SensorStateClass.MEASUREMENT
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+
+    _UNITS = {"h_khz": "kHz", "v_hz": "Hz"}
+
+    def __init__(self, coordinator: NecMultisyncCoordinator, field: str) -> None:
+        key = "signal_h_freq" if field == "h_khz" else "signal_v_freq"
+        super().__init__(coordinator, key)
+        self._field = field
+        self._attr_native_unit_of_measurement = self._UNITS[field]
+
+    @property
+    def native_value(self) -> float | None:
+        signal = self._data.get("signal")
+        if not signal:
+            return None
+        return signal.get(self._field)

@@ -22,12 +22,16 @@ are added):
 
 - **Media player** — power on/off, input source (HDMI1/2/3, DisplayPort, OPS,
   Media Player, Compute Module), volume and mute.
-- **Select** — picture mode, aspect ratio, gamma, audio input, OPS slot power.
-- **Number** — backlight, contrast, sharpness, color temperature.
+- **Select** — picture mode, aspect ratio, gamma, audio input, OPS slot power,
+  surround sound, audio line out.
+- **Number** — backlight, contrast, sharpness, color temperature, and audio
+  treble / bass / balance.
 - **Switch** — key lock, auto brightness, power save.
+- **Button** — sync the panel's clock with Home Assistant.
 - **Sensors** (diagnostics) — temperature sensors, fan status, total operating
-  time, power-on time, self-diagnosis, carbon footprint / savings, power mode.
-- **Binary sensor** — fan problem.
+  time, power-on time, self-diagnosis, carbon footprint / savings, power mode,
+  ambient light, IP address, display clock, and current-signal H/V frequency.
+- **Binary sensor** — fan problem, and presence (panels with a human sensor).
 
 ## Requirements on the display
 

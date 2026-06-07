@@ -37,18 +37,26 @@
       "aspect": { "name": "Соотношение сторон" },
       "gamma": { "name": "Гамма" },
       "audio_input": { "name": "Аудиовход" },
-      "option_slot_power": { "name": "Питание слота OPS" }
+      "option_slot_power": { "name": "Питание слота OPS" },
+      "audio_surround": { "name": "Объёмный звук" },
+      "audio_line_out": { "name": "Линейный аудиовыход" }
     },
     "number": {
       "backlight": { "name": "Подсветка" },
       "contrast": { "name": "Контрастность" },
       "sharpness": { "name": "Резкость" },
-      "color_temp": { "name": "Цветовая температура" }
+      "color_temp": { "name": "Цветовая температура" },
+      "audio_treble": { "name": "Высокие частоты" },
+      "audio_bass": { "name": "Низкие частоты" },
+      "audio_balance": { "name": "Баланс" }
     },
     "switch": {
       "key_lock": { "name": "Блокировка кнопок" },
       "auto_brightness": { "name": "Автояркость" },
       "power_save": { "name": "Энергосбережение" }
+    },
+    "button": {
+      "sync_clock": { "name": "Синхронизировать часы" }
     },
     "sensor": {
       "temperature": { "name": "Датчик температуры {number}" },
@@ -59,10 +67,15 @@
       "carbon_footprint": { "name": "Углеродный след" },
       "carbon_savings": { "name": "Экономия CO₂" },
       "power_mode": { "name": "Режим питания" },
-      "ambient_light": { "name": "Уровень освещённости" }
+      "ambient_light": { "name": "Уровень освещённости" },
+      "ip_address": { "name": "IP-адрес" },
+      "display_time": { "name": "Часы дисплея" },
+      "signal_h_freq": { "name": "Частота строк (H)" },
+      "signal_v_freq": { "name": "Частота кадров (V)" }
     },
     "binary_sensor": {
-      "fan_problem": { "name": "Проблема вентилятора" }
+      "fan_problem": { "name": "Проблема вентилятора" },
+      "human_presence": { "name": "Присутствие" }
     }
   }
 }

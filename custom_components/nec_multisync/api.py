@@ -49,6 +49,7 @@ class NecMultisyncApi:
         self.serial: str | None = None
         self.mac: str | None = None
         self.firmware: str | None = None
+        self.ip_address: str | None = None
 
         # Opcodes the connected model actually supports (populated by probe()).
         self.supported: set[int] = set()
@@ -114,6 +115,12 @@ class NecMultisyncApi:
             self.firmware = _clean(versions[0]) if versions else None
         except (PDError, OSError, IndexError, TypeError):
             self.firmware = None
+        try:
+            # command_ip_address_read returns (ip_string, ip_version).
+            result = pd.command_ip_address_read()
+            self.ip_address = _first(result)
+        except (PDError, OSError):
+            self.ip_address = None
 
     def probe(self) -> None:
         """Determine which opcodes the connected display supports."""
@@ -174,6 +181,19 @@ class NecMultisyncApi:
         except (PDError, OSError) as err:
             raise self._on_error(err) from err
 
+    # -- clock --------------------------------------------------------------
+    def sync_clock(self) -> None:
+        """Write the local time to the display's real-time clock."""
+        from datetime import datetime  # noqa: PLC0415
+
+        from nec_pd_sdk.protocol import PDError  # noqa: PLC0415
+
+        pd = self._ensure()
+        try:
+            pd.helper_date_and_time_write(datetime.now())
+        except (PDError, OSError) as err:
+            raise self._on_error(err) from err
+
     # -- polling ------------------------------------------------------------
     def poll(self) -> dict[str, Any]:
         """Read all supported state in one pass.
@@ -217,6 +237,8 @@ class NecMultisyncApi:
             data["total_operating_hours"] = _safe(pd.helper_get_total_operating_hours)
             data["power_on_hours"] = _safe(pd.helper_get_power_on_hours)
             data["diagnosis"] = _safe(pd.helper_self_diagnosis_status_text)
+            data["display_time"] = _read_display_time(pd)
+            data["signal"] = _read_signal(pd)
         except (PDError, OSError) as err:
             raise self._on_error(err) from err
         return data
@@ -245,6 +267,47 @@ def _format_mac(value: Any) -> str | None:
     if isinstance(value, (bytes, bytearray)):
         return ":".join(f"{b:02x}" for b in value)
     return _clean(value)
+
+
+def _first(value: Any) -> Any:
+    """Return element 0 of a tuple/list, else the value itself."""
+    if isinstance(value, (tuple, list)):
+        return value[0] if value else None
+    return value
+
+
+def _read_display_time(pd: Any) -> str | None:
+    """Return the display RTC time as 'HH:MM', or None if unavailable.
+
+    The SDK reports the time-of-day fields; we surface the wall clock so the
+    user can confirm the panel's schedule clock is in sync.
+    """
+    try:
+        dt = pd.command_date_and_time_read()
+    except Exception:  # noqa: BLE001 - optional diagnostics
+        return None
+    if dt is None:
+        return None
+    try:
+        return f"{dt.hour:02d}:{dt.minute:02d}"
+    except (AttributeError, TypeError, ValueError):
+        return None
+
+
+def _read_signal(pd: Any) -> dict[str, float] | None:
+    """Return current input timing as {'h_khz', 'v_hz'}, or None if no signal."""
+    try:
+        result = pd.command_get_timing_report()
+    except Exception:  # noqa: BLE001 - optional diagnostics
+        return None
+    if not result:
+        return None
+    try:
+        _status, h_freq, v_freq = result
+    except (TypeError, ValueError):
+        return None
+    # SDK reports both frequencies scaled by 100.
+    return {"h_khz": h_freq / 100.0, "v_hz": v_freq / 100.0}
 
 
 def _safe(func: Any) -> Any:

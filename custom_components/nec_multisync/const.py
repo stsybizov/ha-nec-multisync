@@ -56,6 +56,17 @@ OPCODE_AMBIENT_LIGHT = 0x02B5  # "Bright Sensor Read", read only (raw level)
 OPCODE_CARBON_FOOTPRINT_KG = 0x1011  # read only
 OPCODE_CARBON_SAVINGS_KG = 0x1029  # "no reset" read only
 
+# Audio fine-tuning (panel-side; independent of an external AVR/ARC path)
+OPCODE_AUDIO_TREBLE = 0x008F
+OPCODE_AUDIO_BASS = 0x0091
+OPCODE_AUDIO_BALANCE = 0x0093  # Left .. Right
+OPCODE_AUDIO_SURROUND = 0x0234
+OPCODE_AUDIO_LINE_OUT = 0x1081  # Fixed / Variable
+
+# Human / occupancy sensing
+OPCODE_HUMAN_SENSING_MODE = 0x1075
+OPCODE_HUMAN_SENSING_READING = 0x1076  # read only (presence reading)
+
 # --- Input source map (opcode 0x0060), V-series (V754Q/V864Q/V984Q) -------
 # Friendly label -> raw value.
 INPUT_SOURCES: dict[str, int] = {
@@ -166,6 +177,16 @@ SELECTS: tuple[NecSelectDescription, ...] = (
         opcode=OPCODE_OPTION_SLOT_POWER,
         options={1: "Off (linked)", 2: "On", 3: "Auto"},
     ),
+    NecSelectDescription(
+        key="audio_surround",
+        opcode=OPCODE_AUDIO_SURROUND,
+        options={1: "Off", 2: "Low", 3: "High"},
+    ),
+    NecSelectDescription(
+        key="audio_line_out",
+        opcode=OPCODE_AUDIO_LINE_OUT,
+        options={1: "Fixed", 2: "Variable"},
+    ),
 )
 
 NUMBERS: tuple[NecNumberDescription, ...] = (
@@ -173,6 +194,9 @@ NUMBERS: tuple[NecNumberDescription, ...] = (
     NecNumberDescription(key="contrast", opcode=OPCODE_CONTRAST),
     NecNumberDescription(key="sharpness", opcode=OPCODE_SHARPNESS),
     NecNumberDescription(key="color_temp", opcode=OPCODE_COLOR_TEMP),
+    NecNumberDescription(key="audio_treble", opcode=OPCODE_AUDIO_TREBLE),
+    NecNumberDescription(key="audio_bass", opcode=OPCODE_AUDIO_BASS),
+    NecNumberDescription(key="audio_balance", opcode=OPCODE_AUDIO_BALANCE),
 )
 
 SWITCHES: tuple[NecSwitchDescription, ...] = (
@@ -215,5 +239,6 @@ PROBE_OPCODES: tuple[int, ...] = tuple(
         *(d.opcode for d in SENSOR_ENUMS.values()),
         *CARBON_SENSORS.values(),
         *NUMERIC_SENSORS.values(),
+        OPCODE_HUMAN_SENSING_READING,
     }
 )

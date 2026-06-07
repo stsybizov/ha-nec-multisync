@@ -37,18 +37,26 @@
       "aspect": { "name": "Aspect ratio" },
       "gamma": { "name": "Gamma" },
       "audio_input": { "name": "Audio input" },
-      "option_slot_power": { "name": "Option slot power" }
+      "option_slot_power": { "name": "Option slot power" },
+      "audio_surround": { "name": "Surround sound" },
+      "audio_line_out": { "name": "Audio line out" }
     },
     "number": {
       "backlight": { "name": "Backlight" },
       "contrast": { "name": "Contrast" },
       "sharpness": { "name": "Sharpness" },
-      "color_temp": { "name": "Color temperature" }
+      "color_temp": { "name": "Color temperature" },
+      "audio_treble": { "name": "Treble" },
+      "audio_bass": { "name": "Bass" },
+      "audio_balance": { "name": "Balance" }
     },
     "switch": {
       "key_lock": { "name": "Key lock" },
       "auto_brightness": { "name": "Auto brightness" },
       "power_save": { "name": "Power save" }
+    },
+    "button": {
+      "sync_clock": { "name": "Sync clock" }
     },
     "sensor": {
       "temperature": { "name": "Temperature sensor {number}" },
@@ -59,10 +67,15 @@
       "carbon_footprint": { "name": "Carbon footprint" },
       "carbon_savings": { "name": "Carbon savings" },
       "power_mode": { "name": "Power mode" },
-      "ambient_light": { "name": "Ambient light level" }
+      "ambient_light": { "name": "Ambient light level" },
+      "ip_address": { "name": "IP address" },
+      "display_time": { "name": "Display clock" },
+      "signal_h_freq": { "name": "Signal H frequency" },
+      "signal_v_freq": { "name": "Signal V frequency" }
     },
     "binary_sensor": {
-      "fan_problem": { "name": "Fan problem" }
+      "fan_problem": { "name": "Fan problem" },
+      "human_presence": { "name": "Presence" }
     }
   }
 }
