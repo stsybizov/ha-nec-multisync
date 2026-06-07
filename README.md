@@ -89,23 +89,10 @@ logger:
 - `DeviceInfo` is imported from `homeassistant.helpers.entity` (not
   `helpers.device_info`).
 
-## Icon / logo in Home Assistant
+## Icon / logo
 
-Home Assistant loads integration icons from the central
-[`home-assistant/brands`](https://github.com/home-assistant/brands) repository,
-not from `custom_components`. Until this integration is added there, HA shows a
-generic icon (functionality is unaffected).
-
-This repo ships the brand assets ready to go:
-
-- `custom_components/nec_multisync/brand/` — local fallback that silences the
-  HACS brand warning.
-- `homeassistant_brands/custom_integrations/nec_multisync/` — the exact tree to
-  submit to `home-assistant/brands`. Copy its `nec_multisync` folder into that
-  repo's `custom_integrations/` and open a PR; once merged, the icon and logo
-  appear automatically in HA.
-
-To regenerate the PNGs from source: `python tools/make_brand_assets.py`.
+Brand assets live in `custom_components/nec_multisync/brand/`. Regenerate the
+PNGs from source with `python tools/make_brand_assets.py`.
 
 ## Credits
 

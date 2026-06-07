@@ -29,6 +29,5 @@ jobs:
         uses: hacs/action@main
         with:
           category: integration
-          # 'brands' requires the integration to be listed in the
-          # home-assistant/brands repo (a separate PR); ignore until then.
+          # 'brands' check requires central brand registration; skip it.
           ignore: brands

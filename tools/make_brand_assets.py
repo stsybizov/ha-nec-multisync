@@ -159,26 +159,13 @@ def make_logo(scale: int = 1) -> Image.Image:
 
 def main() -> None:
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # Two destinations:
-    #  1) HACS local brand fallback (inside the integration)
-    #  2) ready-to-submit tree for the home-assistant/brands PR
-    targets = [
-        os.path.join(root, "custom_components", "nec_multisync", "brand"),
-        os.path.join(
-            root, "homeassistant_brands", "custom_integrations", "nec_multisync"
-        ),
-    ]
-    icon = make_icon(256)
-    icon2x = make_icon(512)
-    logo = make_logo(1)
-    logo2x = make_logo(2)
-    for out in targets:
-        os.makedirs(out, exist_ok=True)
-        icon.save(os.path.join(out, "icon.png"))
-        icon2x.save(os.path.join(out, "icon@2x.png"))
-        logo.save(os.path.join(out, "logo.png"))
-        logo2x.save(os.path.join(out, "logo@2x.png"))
-        print("wrote brand assets to", out)
+    out = os.path.join(root, "custom_components", "nec_multisync", "brand")
+    os.makedirs(out, exist_ok=True)
+    make_icon(256).save(os.path.join(out, "icon.png"))
+    make_icon(512).save(os.path.join(out, "icon@2x.png"))
+    make_logo(1).save(os.path.join(out, "logo.png"))
+    make_logo(2).save(os.path.join(out, "logo@2x.png"))
+    print("wrote brand assets to", out)
 
 
 if __name__ == "__main__":
