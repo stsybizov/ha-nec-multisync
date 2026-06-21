@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.1
+
+Fixed:
+
+- Media player no longer uses the deprecated `MediaPlayerState.STANDBY`
+  (removed in HA Core 2026.8). Standby and Suspend power states now report
+  `OFF`, so the integration keeps working on current and future Core releases
+  ([#1](https://github.com/stsybizov/ha-nec-multisync/issues/1)).
+
 ## 0.2.0
 
 Added (all probed per model — unsupported ones are skipped):

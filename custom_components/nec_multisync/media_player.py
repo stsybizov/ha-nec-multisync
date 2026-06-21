@@ -25,10 +25,13 @@ from .const import (
 )
 from .entity import NecBaseEntity
 
+# NEC power codes -> HA media player state. Standby (2) and Suspend (3) leave
+# the screen off (the panel can still be woken over LAN), so they map to OFF.
+# MediaPlayerState.STANDBY is deprecated and removed in HA Core 2026.8.
 _POWER_TO_STATE = {
     POWER_ON: MediaPlayerState.ON,
-    2: MediaPlayerState.STANDBY,
-    3: MediaPlayerState.STANDBY,
+    2: MediaPlayerState.OFF,
+    3: MediaPlayerState.OFF,
     POWER_OFF: MediaPlayerState.OFF,
 }
 
